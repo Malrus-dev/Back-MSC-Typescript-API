@@ -40,6 +40,10 @@ services:
 
   # Serviço que irá rodar o banco de dados
   db:
+    # Caso esteja utilizando MacOS M1, descomentar a linha abaixo
+    # platform: linux/x86_64
+    # Se a linha de cima não resolver, esta abaixo é outra opção
+    # platform: linux/arm64/v8
     container_name: trybesmith_db
     image: mysql:8.0.21
     restart: always

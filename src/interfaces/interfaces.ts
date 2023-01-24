@@ -30,3 +30,9 @@ export interface IUser {
 export interface IToken {
   token: string,
 }
+
+export interface IOrder {
+  id?: number,
+  userId: number,
+  productsIds: number[]
+}

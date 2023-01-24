@@ -42,3 +42,45 @@ export const validateProductAmount = async (
 
   next();
 };
+
+export const validateUsename = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void | Response> => {
+  const { username } = req.body;
+  if (!username) {
+    return res.status(StatusCode.BAD_REQUEST).json({ message: '"username" is required' });
+  }
+  if (typeof username !== 'string') {
+    return res.status(StatusCode.CONFLICT).json({ message: '"username" must be a string' });
+  }
+  if (username.length < 3) {
+    return res.status(StatusCode.CONFLICT).json(
+      { message: '"username" length must be at least 3 characters long' },
+    );
+  }
+
+  next();
+};
+
+export const validatePassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void | Response> => {
+  const { password } = req.body;
+  if (!password) {
+    return res.status(StatusCode.BAD_REQUEST).json({ message: '"password" is required' });
+  }
+  if (typeof password !== 'string') {
+    return res.status(StatusCode.CONFLICT).json({ message: '"password" must be a string' });
+  }
+  if (password.length < 8) {
+    return res.status(StatusCode.CONFLICT).json(
+      { message: '"password" length must be at least 8 characters long' },
+    );
+  }
+
+  next();
+};

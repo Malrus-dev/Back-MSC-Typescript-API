@@ -11,7 +11,7 @@ export enum StatusCode {
   BAD_REQUEST = 400,
   UNAUTHORIZED = 401,
   NO_CONTENT = 204,
-  CONFLICT = 409,
+  UNPROCESSABLE = 422,
   INTERNAL_ERROR = 500,
 }
 

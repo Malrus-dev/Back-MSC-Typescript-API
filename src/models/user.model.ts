@@ -20,7 +20,7 @@ export default class UserModel {
   public async findOne(username: string, password: string): Promise<IUser> {
     const [[user]] = await this.connection.execute<(
     IUser & RowDataPacket)[]>(
-      'SELECT id FROM Trybesmith.Users WHERE username = ? AND password = ?',
+      'SELECT id FROM Trybesmith.users WHERE username = ? AND password = ?',
       [username, password],
       );
     return user;

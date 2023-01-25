@@ -10,6 +10,15 @@ class UserController {
     const token = await this.userService.create(msgUser);
     res.status(StatusCode.CREATED).json(token);
   };
+
+  public login = async (req: Request, res: Response): Promise<Response> => {
+    const { username, password } = req.body;
+    const { statusCode, message } = await this.userService.login(username, password);
+    if (statusCode !== 200) {
+      return res.status(statusCode).json({ message });
+    }
+    return res.status(statusCode).json(message);
+  };
 }
 
 export default UserController;

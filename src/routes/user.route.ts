@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import UserController from '../controllers/user.controller';
-import { validatePassword, validateUsename } from '../middlewares/validadeInputs';
+import { Level, Password, Username, Vocation } from '../middlewares/validadeInputs';
 
 const users = Router();
 const controller = new UserController();
 
-users.post('/users', validateUsename, validatePassword, controller.create);
-users.post('/login', validateUsename, validatePassword, controller.login);
+users.post('/users', Username, Password, Vocation, Level, controller.create);
+users.post('/login', Username, Password, controller.login);
 
 export default users;

@@ -36,3 +36,17 @@ export interface IOrder {
   userId: number,
   productsIds: number[]
 }
+
+export interface Idecoded {
+  data: {
+    userId: number
+  }
+}
+
+export interface IUserOrdersResponse extends IResponse {
+  message: IOrder
+}
+
+export interface ILoginResponse extends IResponse {
+  message: IToken | string
+}

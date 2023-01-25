@@ -1,13 +1,9 @@
 import jwt from 'jsonwebtoken';
 import UserModel from '../models/user.model';
 import connection from '../models/connection';
-import { IResponse, IToken, IUser, StatusCode } from '../interfaces/interfaces';
+import { ILoginResponse, IToken, IUser, StatusCode } from '../interfaces/interfaces';
 
 const secret = process.env.JWT_SECRET;
-
-interface ILoginResponse extends IResponse {
-  message: IToken | string
-}
 
 class UserService {
   public model: UserModel;
@@ -18,7 +14,7 @@ class UserService {
 
   public async create(input: IUser): Promise<IToken> {  
     const newUser = await this.model.create(input);
-    const token = jwt.sign({ data: { newUser } }, secret as string);
+    const token = jwt.sign({ data: { userId: newUser.id } }, secret as string);
     return { token };
   }
 
